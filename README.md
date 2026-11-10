@@ -18,7 +18,7 @@ Paket aplikasi web statis untuk GitHub Pages + Firebase Authentication + Cloud F
 - Tombol tambah kegiatan, transaksi kas, takmir, jadwal imam, dan data TPA ditampilkan setelah admin terverifikasi.
 - Tombol ubah/hapus untuk data terkait tersedia bagi admin.
 - Rincian kas tidak menampilkan kolom Keterangan dan Bukti; formulir transaksi juga disederhanakan.
-- Perbaikan editor ubah data TPA dan fungsi render halaman.
+- Perbaikan tombol ubah pada Khatib & Imam dan TPA, termasuk pemetaan nama koleksi Firestore ke daftar data yang benar.
 
 ## Penting: aktivasi akun admin
 Saya tidak dapat mengubah akun atau password pada proyek Firebase Anda dari file ZIP. Agar aplikasi aktif, lakukan satu kali pengaturan berikut di Firebase Console.
