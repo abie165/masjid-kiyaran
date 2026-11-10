@@ -62,3 +62,47 @@ footer{text-align:center;background:linear-gradient(110deg,#082f49,#075b52);colo
 .cash-table-scroll{max-height:490px}
 .cash-table-scroll th,.cash-table-scroll td{white-space:nowrap}
 .cash-table-scroll th,.cash-table-scroll td{padding-top:10px;padding-bottom:10px}
+
+/* V4: penyelarasan header dan kartu sambutan pada desktop serta ponsel */
+.hero{padding:16px 0}
+.hero-inner{gap:12px}
+.hero .auth{gap:0}
+#loginInfo{display:none!important}
+.hero .logo{width:64px;height:64px;font-size:36px;border-radius:17px}
+.hero h1{font-size:clamp(22px,3.2vw,30px)}
+.hero p{font-size:clamp(13px,1.7vw,16px)}
+.welcome{min-height:0;padding:20px 24px;gap:14px;margin-bottom:14px;border-radius:18px}
+.welcome h2{font-size:clamp(24px,3vw,29px);line-height:1.2}
+.welcome .eyebrow{font-size:10px;letter-spacing:1.2px}
+.welcome p{font-size:13px}
+.datebox{padding:9px 12px;gap:2px;font-size:13px}
+.datebox b{font-size:14px}
+.datebox span{font-size:13px}
+#page-home .prayer-panel{margin-top:8px}
+@media(max-width:800px){
+ .hero{padding:12px 0}
+ .hero-inner{gap:10px}
+ .brand{gap:12px}
+ .hero .logo{width:54px;height:54px;font-size:31px;border-radius:15px;flex:0 0 54px}
+ .hero h1{font-size:clamp(20px,5vw,26px);margin:3px 0}
+ .hero .eyebrow{font-size:9px;letter-spacing:1px}
+ .hero p{font-size:12px;line-height:1.35}
+ .auth{width:100%;justify-content:flex-end}
+ .auth .btn{padding:8px 13px;font-size:13px}
+}
+@media(max-width:560px){
+ main{padding-top:14px}
+ .hero{padding:10px 0}
+ .hero-inner{align-items:flex-start;flex-direction:column}
+ .brand{width:100%;align-items:center}
+ .brand>div:last-child{min-width:0}
+ .hero h1{font-size:21px;line-height:1.18}
+ .hero p{font-size:11px;white-space:normal}
+ .auth{justify-content:flex-end;margin-top:-2px}
+ .welcome{padding:15px 16px;gap:10px;margin-bottom:12px;border-radius:16px}
+ .welcome h2{font-size:23px;margin:3px 0}
+ .welcome p{font-size:12px}
+ .datebox{width:auto;min-width:0;text-align:left;padding:7px 10px;border-radius:11px;font-size:12px}
+ .datebox b,.datebox span{font-size:12px}
+ .page{padding:8px;margin:0 -8px}
+}
