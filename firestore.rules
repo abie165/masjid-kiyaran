@@ -1,26 +1,21 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    // Hanya satu akun Firebase Authentication yang dapat mengelola data masjid.
     function isOnlyAdmin() {
       return request.auth != null
-        && request.auth.token.email == 'munzifani@gmail.com'
-        && exists(/databases/$(database)/documents/pengelola/$(request.auth.uid))
-        && get(/databases/$(database)/documents/pengelola/$(request.auth.uid)).data.aktif == true
-        && get(/databases/$(database)/documents/pengelola/$(request.auth.uid)).data.role == 'admin';
+        && request.auth.token.email == 'munzifani@gmail.com';
     }
 
-    // Data masjid dapat dibaca jamaah; hanya satu email admin yang dapat mengubah.
+    // Data dapat dibaca jamaah; hanya admin tunggal yang dapat menambah/mengubah/menghapus.
     match /transaksi/{id} { allow read: if true; allow create, update, delete: if isOnlyAdmin(); }
     match /takmir/{id} { allow read: if true; allow create, update, delete: if isOnlyAdmin(); }
     match /jadwal_ibadah/{id} { allow read: if true; allow create, update, delete: if isOnlyAdmin(); }
     match /kegiatan/{id} { allow read: if true; allow create, update, delete: if isOnlyAdmin(); }
     match /tpa/{id} { allow read: if true; allow create, update, delete: if isOnlyAdmin(); }
 
-    // Hak admin tidak dapat dibuat/diubah dari aplikasi.
-    match /pengelola/{uid} {
-      allow read: if request.auth != null && request.auth.uid == uid;
-      allow write: if false;
-    }
+    // Tidak ada hak untuk mengubah dokumen penetapan admin dari aplikasi.
+    match /pengelola/{uid} { allow read, write: if false; }
     match /{document=**} { allow read, write: if false; }
   }
 }
