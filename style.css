@@ -24,3 +24,26 @@ footer{text-align:center;background:linear-gradient(110deg,#082f49,#075b52);colo
 @media(max-width:800px){.grid.four{grid-template-columns:repeat(2,1fr)}.hero-inner,.pagehead{align-items:flex-start;flex-direction:column}.auth{justify-content:flex-start}.grid.three{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.grid.two,.grid.three,.formgrid{grid-template-columns:1fr}.welcome{align-items:flex-start;flex-direction:column}.datebox{text-align:left}.prayer-grid{grid-template-columns:repeat(2,1fr)}.wide{grid-column:auto}.pagehead .actions{flex-wrap:wrap}.page{padding:8px;margin:0 -8px}}
 @media print{.hero,.nav,.auth,.actions,.filters,.managecol,#cashAdd,#cashEditor,footer{display:none!important}body{background:#fff}.wrap{width:100%}.page{display:none!important}#page-cash{display:block!important}.panel,.stat{box-shadow:none;break-inside:avoid}}
+
+/* Penyegaran visual: kartu saldo dan latar tiap bagian dibuat lebih tegas */
+.stat{min-height:112px;display:flex;flex-direction:column;justify-content:center;border:1px solid #ffffffb8;box-shadow:0 12px 28px #16324b18}
+.stat strong{font-size:clamp(25px,3vw,34px);font-weight:800;letter-spacing:-.6px}
+.stat-balance{background:linear-gradient(135deg,#d8fff0 0%,#a8edda 48%,#d9f5ff 100%)}
+.stat-income{background:linear-gradient(135deg,#e0f7ff 0%,#b9e8ff 48%,#e5e9ff 100%)}
+.stat-expense{background:linear-gradient(135deg,#fff0e6 0%,#ffd2c8 48%,#ffe7f1 100%)}
+.stat-balance strong{color:#075b52}.stat-income strong{color:#12658b}.stat-expense strong{color:#a53f46}
+#page-home .panel{background:linear-gradient(145deg,#ffffff 0%,#f2fffb 100%)}
+#page-home .panel:nth-child(2){background:linear-gradient(145deg,#fff 0%,#fff7e9 100%)}
+#page-cash .panel{background:linear-gradient(145deg,#fff 0%,#f5f3ff 100%)}
+#page-takmir .panel{background:linear-gradient(145deg,#fff 0%,#fff3e7 100%)}
+#page-imam .panel,#page-imam .item{background:linear-gradient(135deg,#fff 0%,#e9f6ff 55%,#f1edff 100%)}
+#page-tpa .panel,#page-tpa .item{background:linear-gradient(135deg,#fff 0%,#f1eaff 55%,#ffeef5 100%)}
+.prayer-grid div{border:1px solid #ffffffb0;box-shadow:0 6px 16px #17324b12;transition:transform .2s}
+.prayer-grid div:hover{transform:translateY(-3px)}
+.prayer-grid .prayer-0{background:linear-gradient(135deg,#d9f5ff,#c8e6ff)}
+.prayer-grid .prayer-1{background:linear-gradient(135deg,#fff4d6,#ffe3ad)}
+.prayer-grid .prayer-2{background:linear-gradient(135deg,#e6e1ff,#d8d0ff)}
+.prayer-grid .prayer-3{background:linear-gradient(135deg,#dff8e8,#bcebd0)}
+.prayer-grid .prayer-4{background:linear-gradient(135deg,#ffe3e9,#ffcbd8)}
+.prayer-grid .prayer-5{background:linear-gradient(135deg,#e5e9ff,#cbd5ff)}
+.prayer-grid b{font:800 21px 'Plus Jakarta Sans';color:#183b50;margin-top:3px}
