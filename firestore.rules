@@ -1,0 +1,23 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function manager() {
+      return signedIn() && exists(/databases/$(database)/documents/pengelola/$(request.auth.uid))
+        && get(/databases/$(database)/documents/pengelola/$(request.auth.uid)).data.aktif == true
+        && get(/databases/$(database)/documents/pengelola/$(request.auth.uid)).data.role in ['admin','bendahara','pengelola'];
+    }
+    // Laporan kas dapat dibaca publik; hanya pengelola terdaftar yang boleh mengubah.
+    match /transaksi/{id} { allow read: if true; allow create, update, delete: if manager(); }
+    // Informasi publik masjid.
+    match /takmir/{id} { allow read: if true; allow create, update, delete: if manager(); }
+    match /jadwal_ibadah/{id} { allow read: if true; allow create, update, delete: if manager(); }
+    match /kegiatan/{id} { allow read: if true; allow create, update, delete: if manager(); }
+    // Jangan masukkan data pribadi sensitif anak ke koleksi publik ini.
+    match /tpa/{id} { allow read: if true; allow create, update, delete: if manager(); }
+    // Pengguna hanya dapat membaca dokumen hak akses miliknya sendiri.
+    // Penambahan/pengubahan role dilakukan dari Firebase Console, bukan dari aplikasi.
+    match /pengelola/{uid} { allow read: if signedIn() && request.auth.uid == uid; allow write: if false; }
+    match /{document=**} { allow read, write: if false; }
+  }
+}
