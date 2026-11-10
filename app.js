@@ -3,7 +3,7 @@ import { getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut } from 'h
 import { getFirestore,collection,doc,addDoc,updateDoc,deleteDoc,onSnapshot,serverTimestamp,query,orderBy } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js';
 
 /* 1) GANTI isi firebaseConfig dengan konfigurasi dari proyek Firebase BARU khusus masjid. */
-const firebaseConfig={apiKey:'ISI_API_KEY',authDomain:'ISI_PROJECT_ID.firebaseapp.com',projectId:'ISI_PROJECT_ID',storageBucket:'ISI_PROJECT_ID.firebasestorage.app',messagingSenderId:'ISI_MESSAGING_SENDER_ID',appId:'ISI_APP_ID'};
+const firebaseConfig={apiKey: "AIzaSyADIdxv-gn87SrqPIvVg_JCrXFPW-ts4hE", authDomain: "masjid-kiyaran.firebaseapp.com", projectId: "masjid-kiyaran", storageBucket: "masjid-kiyaran.firebasestorage.app", messagingSenderId: "120278246073", appId: "1:120278246073:web:021e3cf4320b64365c7168"};
 const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
 const $=id=>document.getElementById(id), rupiah=n=>new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(Number(n)||0);
 let tx=[],user=null,isManager=false,records={takmir:[],imam:[],tpa:[],kegiatan:[]},unsubs=[];
