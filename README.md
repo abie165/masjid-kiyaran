@@ -9,7 +9,7 @@ Paket aplikasi web statis untuk GitHub Pages + Firebase Authentication + Cloud F
 - `firestore.rules` — aturan keamanan Firestore.
 - `README.md` — panduan pemasangan.
 
-## Perubahan pada versi ini
+## Perubahan pada versi ini (V3)
 - Desain diperbarui dengan warna gradasi dan latar berbeda untuk Beranda, Kas, Takmir, Khatib & Imam, dan TPA.
 - Login menampilkan kolom password saja. Email admin ditetapkan di kode sebagai `munzifani@gmail.com`.
 - Hak tulis dibatasi ke satu akun admin tersebut, dengan dokumen admin aktif pada Firestore.
@@ -19,6 +19,9 @@ Paket aplikasi web statis untuk GitHub Pages + Firebase Authentication + Cloud F
 - Tombol ubah/hapus untuk data terkait tersedia bagi admin.
 - Rincian kas tidak menampilkan kolom Keterangan dan Bukti; formulir transaksi juga disederhanakan.
 - Perbaikan tombol ubah pada Khatib & Imam dan TPA, termasuk pemetaan nama koleksi Firestore ke daftar data yang benar.
+- Beranda diatur ulang: Jadwal Salat berada di atas, kartu Kas berada tepat di bawahnya (ijolan panggon).
+- Rincian Kas dibatasi tinggi tampilannya agar sekitar 10 baris terlihat; tabel dapat digulir vertikal dan horizontal dengan judul kolom tetap terlihat.
+- Formulir Takmir tidak lagi meminta Masa Khidmat. Urutan pengurus menggunakan waktu pembuatan (createdAt) dari yang paling awal ke yang terbaru.
 
 ## Penting: aktivasi akun admin
 Saya tidak dapat mengubah akun atau password pada proyek Firebase Anda dari file ZIP. Agar aplikasi aktif, lakukan satu kali pengaturan berikut di Firebase Console.
