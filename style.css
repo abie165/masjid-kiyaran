@@ -106,3 +106,7 @@ footer{text-align:center;background:linear-gradient(110deg,#082f49,#075b52);colo
  .datebox b,.datebox span{font-size:12px}
  .page{padding:8px;margin:0 -8px}
 }
+
+/* Tombol ekspor diletakkan setelah rincian transaksi, di bagian paling bawah. */
+.cash-export-actions{justify-content:flex-end;margin-top:18px;padding-top:14px;border-top:1px solid #dce8e5}
+@media(max-width:600px){.cash-export-actions{justify-content:stretch}.cash-export-actions .btn{flex:1}}
