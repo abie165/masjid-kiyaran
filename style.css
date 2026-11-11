@@ -285,3 +285,13 @@ footer{text-align:center;background:linear-gradient(110deg,#082f49,#075b52);colo
 .dhikr-item h4{margin:0 0 7px;color:#176348}
 .source-note{margin-top:18px;padding:14px;border-radius:12px;background:#f0f7f2;color:#52665b;font-size:13px;line-height:1.7}
 @media(max-width:560px){.reading-intro{align-items:flex-start;flex-direction:column}.reading-tools{align-self:flex-end}}
+
+/* Revisi bacaan: Arab saja, tersimpan lokal */
+#reading-tahlil .latin,#reading-tahlil .meaning,
+#reading-yasin .latin,#reading-yasin .translation { display:none !important; }
+#reading-yasin .arabic,#reading-tahlil .arabic {
+ direction:rtl; text-align:right; font-family:'Amiri','Noto Naskh Arabic',serif;
+ line-height:2.15; unicode-bidi:plaintext;
+}
+#reading-tahlil .dhikr-item { padding:1rem 0; border-bottom:1px solid var(--line, #ddd); }
+#reading-tahlil .dhikr-item h4 { text-align:right; }
