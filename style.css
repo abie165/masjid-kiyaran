@@ -225,3 +225,40 @@ footer{text-align:center;background:linear-gradient(110deg,#082f49,#075b52);colo
     font-size:12px;
   }
 }
+
+/* V12: rincian kas dibatasi tinggi tampilan (sekitar 7 baris),
+   seluruh data tetap tersedia melalui scroll vertikal dan horizontal. */
+.cash-table-scroll{
+  height:390px !important;
+  max-height:390px !important;
+  overflow:auto !important;
+  overflow-x:auto !important;
+  overflow-y:auto !important;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior:contain;
+  scrollbar-width:thin;
+}
+.cash-table-scroll table{
+  min-width:760px !important;
+  width:100%;
+}
+.cash-table-scroll thead th{
+  position:sticky;
+  top:0;
+  z-index:3;
+}
+.cash-table-scroll th,
+.cash-table-scroll td{
+  white-space:nowrap;
+}
+@media(max-width:600px){
+  .cash-table-scroll{
+    height:390px !important;
+    max-height:390px !important;
+    overflow:auto !important;
+    overflow-x:auto !important;
+    overflow-y:auto !important;
+    touch-action:pan-x pan-y;
+  }
+  .cash-table-scroll table{min-width:760px !important}
+}
