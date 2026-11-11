@@ -10,7 +10,7 @@ const $=id=>document.getElementById(id), rupiah=n=>new Intl.NumberFormat('id-ID'
 const hijriDate=d=>{const parts=new Intl.DateTimeFormat('en-u-ca-islamic-umalqura-nu-latn',{day:'numeric',month:'numeric',year:'numeric'}).formatToParts(d);const get=t=>Number(parts.find(p=>p.type===t)?.value||0);const months=['Muharram','Safar','Rabiulawal','Rabiulakhir','Jumadilawal','Jumadilakhir','Rajab','Syakban','Ramadan','Syawal','Zulkaidah','Zulhijah'];return `${get('day')} ${months[get('month')-1]||''} ${get('year')} H`;};
 let tx=[],user=null,isManager=false,records={takmir:[],imam:[],tpa:[],kegiatan:[]},unsubs=[];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const formatCashDate=s=>{const v=String(s??'');const m=v.match(/^(\\d{4})-(\\d{2})-(\\d{2})$/);return m?`${m[3]}/${m[2]}/${m[1]}`:v;};
+const formatCashDate=s=>{const v=String(s??'');const m=v.match(/^(\d{4})-(\d{2})-(\d{2})$/);return m?`${m[3]}/${m[2]}/${m[1]}`:v;};
 function toast(s){$('toast').textContent=s;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2800)}
 function safeUrl(s){try{const u=new URL(s);return ['https:','http:'].includes(u.protocol)?u.href:''}catch{return ''}}
 function link(s,label='Buka tautan'){const u=safeUrl(s);return u?`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(label)}</a>`:'—'}
