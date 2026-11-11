@@ -262,36 +262,3 @@ footer{text-align:center;background:linear-gradient(110deg,#082f49,#075b52);colo
   }
   .cash-table-scroll table{min-width:760px !important}
 }
-
-
-/* Menu Yasin & Dzikir Tahlil: konten lokal ringan, tanpa database tambahan */
-.nav-inner{grid-template-columns:repeat(6,minmax(0,1fr))}
-@media(max-width:800px){.nav-inner{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:560px){.nav-inner{grid-template-columns:repeat(3,minmax(0,1fr))}.navbtn{font-size:10px;padding:9px 2px}}
-.reading-intro{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.reading-tools{display:flex;gap:8px;flex-shrink:0}
-.reading-tabs{display:flex;gap:8px;margin:16px 0;flex-wrap:wrap}
-.reading-tab{border:1px solid #cbded5;background:#fff;color:#315b4d;border-radius:12px;padding:11px 17px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer}
-.reading-tab.active{background:#dff4e9;border-color:#8cc9ad;color:#075b43}
-.reading-content{display:none}.reading-content.active{display:block}
-.quran-verses{--reading-size:1.15rem}
-.quran-verse{padding:17px 4px;border-bottom:1px solid #e5eee9}
-.quran-verse:last-child{border-bottom:0}
-.verse-number{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#e5f4eb;color:#176348;font-size:12px;font-weight:800;margin-bottom:9px}
-.arabic{font-family:'Noto Naskh Arabic','Amiri','Traditional Arabic',serif;font-size:calc(var(--reading-size,1.15rem) * 1.65);line-height:2.05;text-align:right;direction:rtl;color:#173d31;margin:8px 0}
-.latin{font-size:var(--reading-size,1.15rem);line-height:1.8;color:#315b4d;margin:8px 0}
-.translation,.meaning{font-size:calc(var(--reading-size,1.15rem) * .88);line-height:1.75;color:#53645d;margin:6px 0}
-.dhikr-item{padding:13px 0;border-bottom:1px solid #e5eee9}
-.dhikr-item h4{margin:0 0 7px;color:#176348}
-.source-note{margin-top:18px;padding:14px;border-radius:12px;background:#f0f7f2;color:#52665b;font-size:13px;line-height:1.7}
-@media(max-width:560px){.reading-intro{align-items:flex-start;flex-direction:column}.reading-tools{align-self:flex-end}}
-
-/* Revisi bacaan: Arab saja, tersimpan lokal */
-#reading-tahlil .latin,#reading-tahlil .meaning,
-#reading-yasin .latin,#reading-yasin .translation { display:none !important; }
-#reading-yasin .arabic,#reading-tahlil .arabic {
- direction:rtl; text-align:right; font-family:'Amiri','Noto Naskh Arabic',serif;
- line-height:2.15; unicode-bidi:plaintext;
-}
-#reading-tahlil .dhikr-item { padding:1rem 0; border-bottom:1px solid var(--line, #ddd); }
-#reading-tahlil .dhikr-item h4 { text-align:right; }
