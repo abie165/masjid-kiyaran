@@ -31,7 +31,23 @@ function renderCash(){const s=sums(tx);$('cashIncome').textContent=rupiah(s.in);
 function resetCash(){$('cashForm').reset();$('cashId').value='';$('cashDate').value=new Date().toISOString().slice(0,10);$('cashFormTitle').textContent='Tambah Transaksi'}$('cashAdd').onclick=()=>{$('cashEditor').classList.remove('hidden');resetCash()};$('cashCancel').onclick=()=>$('cashEditor').classList.add('hidden');$('cashForm').onsubmit=async e=>{e.preventDefault();if(!canManage())return toast('Akses pengelola diperlukan.');const data={tanggal:$('cashDate').value,jenis:$('cashKind').value,kategori:$('cashCategory').value.trim(),nominal:Number($('cashAmount').value),updatedAt:serverTimestamp()};try{const id=$('cashId').value;if(id)await updateDoc(doc(db,'transaksi',id),data);else await addDoc(collection(db,'transaksi'),{...data,createdAt:serverTimestamp()});$('cashEditor').classList.add('hidden');resetCash();toast('Transaksi tersimpan.')}catch(e){console.error(e);toast('Gagal menyimpan transaksi.')}};
 $('cashRows').onclick=async e=>{const id=e.target.dataset.txedit,del=e.target.dataset.txdelete;if(id){const x=tx.find(a=>a.id===id);if(!x)return;$('cashEditor').classList.remove('hidden');$('cashId').value=id;$('cashDate').value=x.tanggal||'';$('cashKind').value=x.jenis||'pemasukan';$('cashCategory').value=x.kategori||'';$('cashAmount').value=x.nominal||'';$('cashFormTitle').textContent='Ubah Transaksi'}if(del&&confirm('Hapus transaksi ini?'))try{await deleteDoc(doc(db,'transaksi',del));toast('Transaksi dihapus.')}catch(err){console.error(err);toast('Tidak dapat menghapus transaksi.')}};
 $('exportCsv').onclick=()=>{const rows=[['Tanggal','Jenis','Keterangan','Nominal'],...cashFiltered().map(x=>[x.tanggal,x.jenis,x.kategori,x.nominal])];const csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';')).join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='laporan-kas-masjid.csv';a.click();URL.revokeObjectURL(a.href)};$('printCash').onclick=()=>{showPage('cash');window.print()};
-function renderTakmir(){const ordered=[...records.takmir].sort((a,b)=>{const at=a.createdAt?.toMillis?.()??0,bt=b.createdAt?.toMillis?.()??0;return at-bt});$('takmirList').innerHTML=ordered.length?ordered.map(x=>`<article class="panel">${x.foto?`<p>${link(x.foto,'Lihat foto')}</p>`:''}<span class="eyebrow">${esc(x.jabatan||'PENGURUS')}</span><h3>${esc(x.nama||'')}</h3>${x.masa?`<p>${esc(x.masa)}</p>`:''}<p>${esc(x.keterangan||'')}</p>${actions('takmir',x.id)}</article>`).join(''):'<div class="panel">Data pengurus belum ditambahkan.</div>'}
+function renderTakmir(){
+  const ordered=[...records.takmir].sort((a,b)=>{
+    const at=a.createdAt?.toMillis?.()??0,bt=b.createdAt?.toMillis?.()??0;
+    return at-bt;
+  });
+  const groups=new Map();
+  ordered.forEach(x=>{
+    const role=String(x.jabatan||'PENGURUS').trim()||'PENGURUS';
+    if(!groups.has(role))groups.set(role,[]);
+    groups.get(role).push(x);
+  });
+  $('takmirList').innerHTML=groups.size?[...groups.entries()].map(([role,members])=>
+    `<article class="panel takmir-group"><span class="eyebrow">KEPENGURUSAN</span><h3>${esc(role)}</h3><ol class="takmir-member-list">${members.map(x=>
+      `<li><div class="takmir-member"><div class="takmir-member-info"><strong>${esc(x.nama||'')}</strong>${x.foto?`<p>${link(x.foto,'Lihat foto')}</p>`:''}${x.masa?`<p>${esc(x.masa)}</p>`:''}${x.keterangan?`<p>${esc(x.keterangan)}</p>`:''}</div>${actions('takmir',x.id)}</div></li>`
+    ).join('')}</ol></article>`
+  ).join(''):'<div class="panel">Data pengurus belum ditambahkan.</div>';
+}
 function renderImam(){$('imamList').innerHTML=records.imam.length?records.imam.map(x=>`<article class="item"><span class="eyebrow">${esc(x.jenis||'JADWAL')}</span><h4>${esc(x.tanggal||'')} · ${esc(x.nama||'')}</h4><p>${esc(x.tema||'')}</p>${link(x.tautan,'Buka dokumen/foto')}${actions('jadwal_ibadah',x.id)}</article>`).join(''):'<div class="panel">Jadwal belum ditambahkan.</div>'}
 function renderTpa(){const a=records.tpa;$('studentCount').textContent=`${a.filter(x=>x.jenis==='santri').length} data santri/kelompok`;for(const [id,type] of [['studentList','santri'],['teacherList','pengajar'],['materialList','bahan']]){$(id).innerHTML=a.filter(x=>x.jenis===type).map(x=>`<div class="item"><b>${esc(x.nama||'')}</b><p>${esc(x.keterangan||'')}</p>${link(x.tautan,'Buka file/folder')}${actions('tpa',x.id)}</div>`).join('')||'<p class="muted">Belum ada data.</p>'}}
 function renderEvents(){$('homeEvents').innerHTML=records.kegiatan.length?records.kegiatan.slice(0,5).map(x=>`<div class="item"><b>${esc(x.judul||'Kegiatan')}</b><p>${esc(x.tanggal||'')} · ${esc(x.keterangan||'')}</p>${actions('kegiatan',x.id)}</div>`).join(''):'<p class="muted">Belum ada kegiatan yang ditambahkan.</p>'}
