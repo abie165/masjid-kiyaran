@@ -335,3 +335,15 @@ footer{text-align:center;background:linear-gradient(110deg,#082f49,#075b52);colo
   #page-takmir .takmir-cards{gap:9px}
   #page-takmir .takmir-cards>.panel{padding:12px 15px}
 }
+
+/* Takmir: kelompok jabatan dengan daftar beberapa anggota */
+#page-takmir .takmir-group h3{margin:7px 0 12px}
+#page-takmir .takmir-member-list{margin:0;padding-left:28px;display:grid;gap:10px}
+#page-takmir .takmir-member-list li{padding-left:5px}
+#page-takmir .takmir-member{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;border-bottom:1px solid rgba(130,100,65,.15);padding:3px 0 10px}
+#page-takmir .takmir-member-list li:last-child .takmir-member{border-bottom:0;padding-bottom:2px}
+#page-takmir .takmir-member-info{min-width:0;flex:1}
+#page-takmir .takmir-member-info strong{display:block;font-size:1rem}
+#page-takmir .takmir-member-info p{margin:4px 0 0;font-size:.9rem}
+#page-takmir .takmir-member .item-actions{flex-shrink:0}
+@media(max-width:520px){#page-takmir .takmir-member{gap:7px}#page-takmir .takmir-member .item-actions{gap:4px}}
