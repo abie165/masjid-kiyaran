@@ -43,7 +43,7 @@ function renderTakmir(){
     groups.get(role).push(x);
   });
   $('takmirList').innerHTML=groups.size?[...groups.entries()].map(([role,members])=>
-    `<article class="panel takmir-group"><span class="eyebrow">KEPENGURUSAN</span><h3>${esc(role)}</h3><ol class="takmir-member-list">${members.map(x=>
+    `<article class="panel takmir-group"><h3>${esc(role)}</h3><ol class="takmir-member-list">${members.map(x=>
       `<li><div class="takmir-member"><div class="takmir-member-info"><strong>${esc(x.nama||'')}</strong>${x.foto?`<p>${link(x.foto,'Lihat foto')}</p>`:''}${x.masa?`<p>${esc(x.masa)}</p>`:''}${x.keterangan?`<p>${esc(x.keterangan)}</p>`:''}</div>${actions('takmir',x.id)}</div></li>`
     ).join('')}</ol></article>`
   ).join(''):'<div class="panel">Data pengurus belum ditambahkan.</div>';
